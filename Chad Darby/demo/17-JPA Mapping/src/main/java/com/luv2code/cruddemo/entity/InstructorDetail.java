@@ -2,22 +2,12 @@ package com.luv2code.cruddemo.entity;
 
 import jakarta.persistence.*;
 
+// annotate the class as an entity and map to db table
 @Entity
 @Table(name="instructor_detail")
 public class InstructorDetail {
-
-    // annotate the class as an entity and map to db table
-
     // define the fields
-
     // annotate the fields with db column names
-
-    // create constructors
-
-    // generate getter/setter methods
-
-    // generate toString() method
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id")
@@ -29,6 +19,8 @@ public class InstructorDetail {
     @Column(name="hobby")
     private String hobby;
 
+
+    // create constructors
     public InstructorDetail() {
 
     }
@@ -38,6 +30,8 @@ public class InstructorDetail {
         this.hobby = hobby;
     }
 
+
+    // generate getter/setter methods
     public int getId() {
         return id;
     }
@@ -62,6 +56,7 @@ public class InstructorDetail {
         this.hobby = hobby;
     }
 
+    // generate toString() method
     @Override
     public String toString() {
         return "InstructorDetail{" +
