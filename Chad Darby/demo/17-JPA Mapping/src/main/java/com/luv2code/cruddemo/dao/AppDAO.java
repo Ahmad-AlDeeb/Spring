@@ -23,6 +23,10 @@ public interface AppDAO {
     void deleteInstructorDetailById(int theId);
 
     List<Course> findCoursesByInstructorId(int theId);
+
+    Instructor findInstructorByIdJoinFetch(int theId);
+
+
 }
 
 
@@ -100,5 +104,23 @@ class AppDAOImpl implements AppDAO {
         List<Course> courses = query.getResultList();
 
         return courses;
+    }
+
+    // Force Eager loading for dependencies (courses) by using Join Fetch
+    @Override
+    public Instructor findInstructorByIdJoinFetch(int theId) {
+
+        // create query
+        TypedQuery<Instructor> query = entityManager.createQuery(
+                "select i from Instructor i "
+                        + "JOIN FETCH i.courses "
+                        + "JOIN FETCH i.instructorDetail "
+                        + "where i.id = :data", Instructor.class);
+        query.setParameter("data", theId);
+
+        // execute query
+        Instructor instructor = query.getSingleResult();
+
+        return instructor;
     }
 }
