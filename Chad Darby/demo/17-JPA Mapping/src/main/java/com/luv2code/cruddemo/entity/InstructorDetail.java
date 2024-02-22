@@ -21,7 +21,8 @@ public class InstructorDetail {
 
 
     // add @OneToOne annotation
-    @OneToOne(mappedBy = "instructorDetail", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "instructorDetail",
+            cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     private Instructor instructor;
 
     // create constructors
@@ -64,9 +65,9 @@ public class InstructorDetail {
         return instructor;
     }
 
-//    public void setInstructor(Instructor instructor) {
-//        this.instructor = instructor;
-//    }
+    public void setInstructor(Instructor instructor) {
+        this.instructor = instructor;
+    }
 
 
     // generate toString() method
