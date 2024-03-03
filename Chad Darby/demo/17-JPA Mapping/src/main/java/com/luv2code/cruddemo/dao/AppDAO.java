@@ -46,6 +46,7 @@ public interface AppDAO {
     /** Student CRUD **/
     Student findStudentAndCoursesByStudentId(int theId);
     void update(Student tempStudent);
+    void deleteStudentById(int theId);
 }
 
 
@@ -240,5 +241,16 @@ class AppDAOImpl implements AppDAO {
     @Transactional
     public void update(Student tempStudent) {
         entityManager.merge(tempStudent);
+    }
+
+    @Override
+    @Transactional
+    public void deleteStudentById(int theId) {
+
+        // retrieve the student
+        Student tempStudent = entityManager.find(Student.class, theId);
+
+        // delete the student
+        entityManager.remove(tempStudent);
     }
 }
