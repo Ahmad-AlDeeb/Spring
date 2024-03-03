@@ -13,23 +13,23 @@ import java.util.List;
 
 public interface AppDAO {
 
+    /** Save & update for instructors **/
     void save(Instructor theInstructor);
-
-    Instructor findInstructorById(int theId);
-
-    void deleteInstructorById(int theId);
-
-    InstructorDetail findInstructorDetailById(int theId);
-    void deleteInstructorDetailById(int theId);
-
-    List<Course> findCoursesByInstructorId(int theId);
-
-    Instructor findInstructorByIdJoinFetch(int theId);
-
     void update(Instructor tempInstructor);
 
+    /** Find & delete instructors by ID **/
+    Instructor findInstructorById(int theId);
+    void deleteInstructorById(int theId);
+
+    /** Find & delete instructors details by ID **/
+    InstructorDetail findInstructorDetailById(int theId);
+    void deleteInstructorDetailById(int theId);
+    Instructor findInstructorByIdJoinFetch(int theId);
+
+    /** Find courses **/
     Course findCourseById(int theId);
     void update(Course tempCourse);
+    List<Course> findCoursesByInstructorId(int theId);
 }
 
 
@@ -63,6 +63,14 @@ class AppDAOImpl implements AppDAO {
 
         // retrieve the instructor
         Instructor tempInstructor = entityManager.find(Instructor.class, theId);
+
+        // get the courses
+        List<Course> courses = tempInstructor.getCourses();
+
+        // break association of all courses for the instructor
+        for (Course tempCourse : courses) {
+            tempCourse.setInstructor(null);
+        }
 
         // delete the instructor
         entityManager.remove(tempInstructor);
