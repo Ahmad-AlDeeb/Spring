@@ -17,9 +17,11 @@ public interface AppDAO {
     void save(Instructor theInstructor);
     void update(Instructor tempInstructor);
 
+
     /** Find & delete instructors by ID **/
     Instructor findInstructorById(int theId);
     void deleteInstructorById(int theId);
+
 
     /** Find & delete instructors details by ID **/
     InstructorDetail findInstructorDetailById(int theId);
@@ -27,8 +29,11 @@ public interface AppDAO {
     Instructor findInstructorByIdJoinFetch(int theId);
 
 
-    // Update course
+    /** Save & update course **/
+    void save(Course theCourse);
     void update(Course tempCourse);
+
+
     /** Find & delete courses **/
     Course findCourseById(int theId);
     List<Course> findCoursesByInstructorId(int theId);
@@ -164,5 +169,11 @@ class AppDAOImpl implements AppDAO {
 
         // delete the course
         entityManager.remove(tempCourse);
+    }
+
+    @Override
+    @Transactional
+    public void save(Course theCourse) {
+        entityManager.persist(theCourse);
     }
 }
