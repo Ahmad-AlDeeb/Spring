@@ -39,6 +39,7 @@ public interface AppDAO {
     List<Course> findCoursesByInstructorId(int theId);
     void deleteCourseById(int theId);
     Course findCourseAndReviewsByCourseId(int theId);
+    Course findCourseAndStudentsByCourseId(int theId);
 }
 
 
@@ -185,6 +186,23 @@ class AppDAOImpl implements AppDAO {
         TypedQuery<Course> query = entityManager.createQuery(
                 "select c from Course c "
                         + "JOIN FETCH c.reviews "
+                        + "where c.id = :data", Course.class);
+
+        query.setParameter("data", theId);
+
+        // execute query
+        Course course = query.getSingleResult();
+
+        return course;
+    }
+
+    @Override
+    public Course findCourseAndStudentsByCourseId(int theId) {
+
+        // create query
+        TypedQuery<Course> query = entityManager.createQuery(
+                "select c from Course c "
+                        + "JOIN FETCH c.students "
                         + "where c.id = :data", Course.class);
 
         query.setParameter("data", theId);

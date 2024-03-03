@@ -35,7 +35,8 @@ public class CruddemoApplication {
 //			createCourseAndReviews(appDAO);
 //			retrieveCourseAndReviews(appDAO);
 //			deleteCourseAndReviews(appDAO);
-			createCourseAndStudents(appDAO);
+//			createCourseAndStudents(appDAO);
+			findCourseAndStudents(appDAO);
 		};
 	}
 
@@ -240,6 +241,14 @@ public class CruddemoApplication {
 		System.out.println("Saving the course: " + tempCourse);
 		appDAO.save(tempCourse);
 		System.out.println("associated students: " + tempCourse.getStudents());
+	}
+	private void findCourseAndStudents(AppDAO appDAO) {
+
+		int theId = 10;
+		Course tempCourse = appDAO.findCourseAndStudentsByCourseId(theId);
+
+		System.out.println("Loaded course: " + tempCourse);
+		System.out.println("Students: " + tempCourse.getStudents());
 	}
 }
 
