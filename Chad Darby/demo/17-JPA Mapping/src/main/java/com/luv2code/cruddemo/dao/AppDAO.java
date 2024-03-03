@@ -26,7 +26,10 @@ public interface AppDAO {
 
     Instructor findInstructorByIdJoinFetch(int theId);
 
+    void update(Instructor tempInstructor);
 
+    Course findCourseById(int theId);
+    void update(Course tempCourse);
 }
 
 
@@ -106,7 +109,7 @@ class AppDAOImpl implements AppDAO {
         return courses;
     }
 
-    // Force Eager loading for dependencies (courses) by using Join Fetch
+    // Force Eager loading for dependencies (courses & instructor details) by using Join Fetch
     @Override
     public Instructor findInstructorByIdJoinFetch(int theId) {
 
@@ -122,5 +125,22 @@ class AppDAOImpl implements AppDAO {
         Instructor instructor = query.getSingleResult();
 
         return instructor;
+    }
+
+    @Override
+    @Transactional
+    public void update(Instructor tempInstructor) {
+        entityManager.merge(tempInstructor);
+    }
+
+    @Override
+    public Course findCourseById(int theId) {
+        return entityManager.find(Course.class, theId);
+    }
+
+    @Override
+    @Transactional
+    public void update(Course tempCourse) {
+        entityManager.merge(tempCourse);
     }
 }
