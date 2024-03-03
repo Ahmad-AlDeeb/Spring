@@ -35,7 +35,8 @@ public class CruddemoApplication {
 //			updateInstructor(appDAO);
 //			updateCourse(appDAO);
 //			deleteCourse(appDAO);
-			createCourseAndReviews(appDAO);
+//			createCourseAndReviews(appDAO);
+			retrieveCourseAndReviews(appDAO);
 		};
 	}
 
@@ -55,7 +56,6 @@ public class CruddemoApplication {
 		System.out.println("Saving instructor: " + tempInstructor);
 		appDAO.save(tempInstructor);
 	}
-
 	private void findInstructor(AppDAO appDAO) {
 
 		int id = 2;
@@ -66,7 +66,6 @@ public class CruddemoApplication {
 		System.out.println("instructor: " + instructor);
 		System.out.println("the associated instructorDetail only: " + instructor.getInstructorDetail());
 	}
-
 	private void deleteInstructor(AppDAO appDAO) {
 
 		int theId = 1;
@@ -74,7 +73,6 @@ public class CruddemoApplication {
 		System.out.println("Deleting.....");
 		appDAO.deleteInstructorById(theId);
 	}
-
 	private void findInstructorDetail(AppDAO appDAO) {
 		// get the instructor detail object
 		int theId = 3;
@@ -91,7 +89,6 @@ public class CruddemoApplication {
 		System.out.println("Deleting instructor detail id: " + theId);
 		appDAO.deleteInstructorDetailById(theId);
 	}
-
 	// Create instructor and all its dependencies and save to DB
 	private void createInstructorWithCourses(AppDAO appDAO) {
 		// create the instructor
@@ -129,7 +126,6 @@ public class CruddemoApplication {
 		System.out.println("tempInstructor: " + tempInstructor);
 		System.out.println("the associated courses: " + tempInstructor.getCourses());
 	}
-
 	private void findCoursesForInstructor(AppDAO appDAO) {
 
 		int theId = 1;
@@ -151,7 +147,6 @@ public class CruddemoApplication {
 
 		System.out.println("Done!");
 	}
-
 	private void findInstructorWithCoursesJoinFetch(AppDAO appDAO) {
 
 		int theId = 1;
@@ -163,7 +158,6 @@ public class CruddemoApplication {
 		System.out.println("tempInstructor: " + tempInstructor);
 		System.out.println("the associated courses: " + tempInstructor.getCourses());
 	}
-
 	private void updateInstructor(AppDAO appDAO) {
 
 		int theId = 1;
@@ -175,8 +169,6 @@ public class CruddemoApplication {
 		tempInstructor.setLastName("TESTER");
 		appDAO.update(tempInstructor);
 	}
-
-
 	private void updateCourse(AppDAO appDAO) {
 
 		int theId = 10;
@@ -197,9 +189,6 @@ public class CruddemoApplication {
 		appDAO.deleteCourseById(theId);
 
 	}
-
-
-
 	private void createCourseAndReviews(AppDAO appDAO) {
 
 		// create a course
@@ -218,6 +207,18 @@ public class CruddemoApplication {
 		appDAO.save(tempCourse);
 
 		System.out.println("Done!");
+	}
+	private void retrieveCourseAndReviews(AppDAO appDAO) {
+
+		// get the course and reviews
+		int theId = 10;
+		Course tempCourse = appDAO.findCourseAndReviewsByCourseId(theId);
+
+		// print the course
+		System.out.println(tempCourse);
+
+		// print the reviews
+		System.out.println(tempCourse.getReviews());
 	}
 }
 
