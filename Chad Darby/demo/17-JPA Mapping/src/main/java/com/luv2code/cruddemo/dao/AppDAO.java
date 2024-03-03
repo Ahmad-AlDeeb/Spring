@@ -40,10 +40,12 @@ public interface AppDAO {
     List<Course> findCoursesByInstructorId(int theId);
     void deleteCourseById(int theId);
     Course findCourseAndReviewsByCourseId(int theId);
-
-    /** Find course and its students and vice versa **/
     Course findCourseAndStudentsByCourseId(int theId);
+
+
+    /** Student CRUD **/
     Student findStudentAndCoursesByStudentId(int theId);
+    void update(Student tempStudent);
 }
 
 
@@ -232,5 +234,11 @@ class AppDAOImpl implements AppDAO {
         Student student = query.getSingleResult();
 
         return student;
+    }
+
+    @Override
+    @Transactional
+    public void update(Student tempStudent) {
+        entityManager.merge(tempStudent);
     }
 }
