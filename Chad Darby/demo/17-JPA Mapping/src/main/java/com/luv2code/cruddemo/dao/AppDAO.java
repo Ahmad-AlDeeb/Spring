@@ -26,10 +26,13 @@ public interface AppDAO {
     void deleteInstructorDetailById(int theId);
     Instructor findInstructorByIdJoinFetch(int theId);
 
-    /** Find courses **/
-    Course findCourseById(int theId);
+
+    // Update course
     void update(Course tempCourse);
+    /** Find & delete courses **/
+    Course findCourseById(int theId);
     List<Course> findCoursesByInstructorId(int theId);
+    void deleteCourseById(int theId);
 }
 
 
@@ -150,5 +153,16 @@ class AppDAOImpl implements AppDAO {
     @Transactional
     public void update(Course tempCourse) {
         entityManager.merge(tempCourse);
+    }
+
+    @Override
+    @Transactional
+    public void deleteCourseById(int theId) {
+
+        // retrieve the course
+        Course tempCourse = entityManager.find(Course.class, theId);
+
+        // delete the course
+        entityManager.remove(tempCourse);
     }
 }
