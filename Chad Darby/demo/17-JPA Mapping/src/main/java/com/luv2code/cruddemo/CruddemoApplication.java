@@ -38,7 +38,8 @@ public class CruddemoApplication {
 //			createCourseAndStudents(appDAO);
 //			findCourseAndStudents(appDAO);
 //			findStudentAndCourses(appDAO);
-			addMoreCoursesForStudent(appDAO);
+//			addMoreCoursesForStudent(appDAO);
+			deleteCourse(appDAO);
 		};
 	}
 
@@ -186,7 +187,7 @@ public class CruddemoApplication {
 		appDAO.update(tempCourse);
 	}
 	private void deleteCourse(AppDAO appDAO) {
-		int theId = 11;
+		int theId = 10;
 		System.out.println("Deleting course id: " + theId);
 		appDAO.deleteCourseById(theId);
 
