@@ -9,6 +9,7 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 @Configuration
 public class DemoSecurityConfig {
 
+    // Add some users that can access the app with passwords
     @Bean
     public InMemoryUserDetailsManager userDetailsManager() {
 
