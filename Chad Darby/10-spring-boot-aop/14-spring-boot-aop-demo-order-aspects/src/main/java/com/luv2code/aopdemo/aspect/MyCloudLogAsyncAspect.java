@@ -34,7 +34,7 @@ class MyDemoLoggingAspect {
 
 @Aspect
 @Component
-@Order(3)
+//@Order(3)
 class MyApiAnalyticsAspect {
 
     @Before("com.luv2code.aopdemo.aspect.LuvAopExpressions.forDaoPackageNoGetterSetter()")

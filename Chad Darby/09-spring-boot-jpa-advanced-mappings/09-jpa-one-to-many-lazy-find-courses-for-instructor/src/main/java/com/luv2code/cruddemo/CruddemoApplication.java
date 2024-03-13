@@ -63,6 +63,7 @@ public class CruddemoApplication {
 		System.out.println("Done!");
 	}
 
+	// Create instructor and all its dependencies and save to DB
 	private void findInstructorWithCourses(AppDAO appDAO) {
 
 		int theId = 1;

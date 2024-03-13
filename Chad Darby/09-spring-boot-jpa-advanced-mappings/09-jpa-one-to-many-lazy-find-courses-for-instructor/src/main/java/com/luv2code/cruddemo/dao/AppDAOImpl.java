@@ -72,6 +72,8 @@ public class AppDAOImpl implements AppDAO {
         // create query
         TypedQuery<Course> query = entityManager.createQuery(
                                     "from Course where instructor.id = :data", Course.class);
+
+        // inject the parameter into the query
         query.setParameter("data", theId);
 
         // execute query

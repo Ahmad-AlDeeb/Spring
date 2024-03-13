@@ -23,7 +23,7 @@ public class AopdemoApplication {
 											   TrafficFortuneService theTrafficFortuneService) {
 		return runner -> {
 //			 beforeDemo(theAccountDAO, theMembershipDAO);
-//			 afterDemo(theAccountDAO);
+			 afterDemo(theAccountDAO);
 //			 aroundDemo(theTrafficFortuneService);
 		};
 	}
@@ -42,7 +42,7 @@ public class AopdemoApplication {
 	}
 	private void afterDemo(AccountDAO theAccountDAO) {
 		try {
-			System.out.println(theAccountDAO.getAllAccounts(true));
+			System.out.println(theAccountDAO.getAllAccounts(false));
 		}
 		catch (Exception exc) {
 			System.out.println("Run-time exception from afterDemo()!!!");

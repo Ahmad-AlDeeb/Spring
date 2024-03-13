@@ -102,6 +102,8 @@ public class AppDAOImpl implements AppDAO {
     public void update(Instructor tempInstructor) {
         entityManager.merge(tempInstructor);
     }
+
+    
 }
 
 
