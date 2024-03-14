@@ -23,13 +23,13 @@ public class Student {
     @Column(name = "email")
     private String email;
 
+
+    ////////////////// Student-to-Course --> Many-to-Many //////////////////
     @ManyToMany(fetch = FetchType.LAZY,
-            cascade = {CascadeType.PERSIST, CascadeType.MERGE,
-                    CascadeType.DETACH, CascadeType.REFRESH})
-    @JoinTable(
-            name = "course_student",
-            joinColumns = @JoinColumn(name = "student_id"),
-            inverseJoinColumns = @JoinColumn(name = "course_id")
+                cascade = {CascadeType.PERSIST, CascadeType.MERGE,  CascadeType.DETACH, CascadeType.REFRESH})
+    @JoinTable(name = "course_student",
+               joinColumns = @JoinColumn(name = "student_id"),
+               inverseJoinColumns = @JoinColumn(name = "course_id")
     )
     private List<Course> courses;
 

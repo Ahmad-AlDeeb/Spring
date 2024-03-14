@@ -25,12 +25,13 @@ public class Instructor {
     @Column(name="email")
     private String email;
 
-    // ** set up mapping to InstructorDetail entity
+    ////////////////// Instructor-to-InstructorDetail --> One-to-One //////////////////
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "instructor_detail_id")
     private InstructorDetail instructorDetail;
 
 
+    ////////////////// Instructor-to-Course --> One-to-Many //////////////////
     @OneToMany(mappedBy = "instructor",
             fetch = FetchType.LAZY,
             cascade = {CascadeType.PERSIST, CascadeType.MERGE,

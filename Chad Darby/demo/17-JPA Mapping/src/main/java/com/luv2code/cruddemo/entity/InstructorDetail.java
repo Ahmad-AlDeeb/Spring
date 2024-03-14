@@ -20,7 +20,7 @@ public class InstructorDetail {
     private String hobby;
 
 
-    // add @OneToOne annotation
+    ////////////////// InstructorDetail-to-Instructor --> One-to-One //////////////////
     @OneToOne(mappedBy = "instructorDetail",
             cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     private Instructor instructor;
