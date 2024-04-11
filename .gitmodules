@@ -1,0 +1,3 @@
+[submodule "Demos/Testing/tc-guide-testing-spring-boot-rest-api"]
+	path = Demos/Testing/tc-guide-testing-spring-boot-rest-api
+	url = https://github.com/testcontainers/tc-guide-testing-spring-boot-rest-api
