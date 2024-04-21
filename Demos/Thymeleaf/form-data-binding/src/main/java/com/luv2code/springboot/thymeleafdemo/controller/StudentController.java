@@ -24,7 +24,7 @@ public class StudentController {
     private List<String> systems;
 
 
-    @GetMapping("/form")
+    @GetMapping
     public String getForm(Model theModel) {
 
         // add student object to the model
