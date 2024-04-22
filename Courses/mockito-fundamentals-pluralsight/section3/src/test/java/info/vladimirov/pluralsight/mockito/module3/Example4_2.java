@@ -22,10 +22,12 @@ public class Example4_2 {
      */
     @Test
     void depositMoneyHappyPath() {
-        DbConnector dbConnector = mock(DbConnector.class);
-        ConversionRateService conversionRateService = mock(ConversionRateService.class);
-        BankAuditService bankAuditService = mock(BankAuditService.class);
-        UserAccount userAccount = Mockito.mock(UserAccount.class);
+        /////////////////////////////////// Mocks /////////////////////////////////////
+        DbConnector dbConnector = mock();
+        ConversionRateService conversionRateService = mock();
+        BankAuditService bankAuditService = mock();
+        UserAccount userAccount = mock();
+        //////////////////////////////////////////////////////////////////////////////
 
         BankAccountService bAccService = new BankAccountServiceImpl(dbConnector, conversionRateService,
                 bankAuditService);
@@ -34,12 +36,14 @@ public class Example4_2 {
         Double deposit = 20.0;
         AccountCurrency accountCurrency = new AccountCurrency("USD");
 
-        //Configure mocks
+        //////////////////////////////////// Stubs ////////////////////////////////////
         Mockito.when(dbConnector.getBankAccount(accountName)).thenReturn(userAccount);
         Mockito.when(userAccount.getAccountBalance(accountCurrency)).thenReturn(deposit);
+        ///////////////////////////////////////////////////////////////////////////////
 
         Assertions.assertTrue(bAccService.depositMoney(accountName, deposit, accountCurrency));
 
+        ////////////////////////////////////// Verify //////////////////////////////////////
         Mockito.verify(dbConnector,
                 times(1)).getBankAccount(Mockito.anyString());
 
