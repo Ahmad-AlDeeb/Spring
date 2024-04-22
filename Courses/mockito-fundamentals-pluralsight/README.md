@@ -1,2 +1,2 @@
-# mockito-fundamentals
-Mockito Fundamentals
+- [Course link](https://app.pluralsight.com/library/courses/mockito-fundamentals/table-of-contents)
+- [Original Repository](https://github.com/aleks-vladimirov/mockito-fundamentals)
