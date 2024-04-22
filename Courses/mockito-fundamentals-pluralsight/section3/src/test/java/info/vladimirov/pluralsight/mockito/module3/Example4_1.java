@@ -18,16 +18,21 @@ public class Example4_1 {
 
     @Test
     void executeTradeGuaranteeMultipleReturnValues() {
+        //////////////////////////// Mocks ////////////////////////////
         AuditReport auditRepo = Mockito.mock(AuditReport.class);
         Exchange exchange = mock(Exchange.class);
         MarketData marketData = mock(MarketData.class);
+        //////////////////////////////////////////////////////////////
 
+        // Target object to test
         TradingApp tradingApp = new TradingApp(auditRepo, marketData, exchange);
 
+        // Real data
         final String symbol = "PS";
         double px = 22.5;
         int qty = 100;
 
+        ///////////////////////////// Stubs /////////////////////////////
         Mockito.when(marketData.isCurrentOrderPossible(Mockito.anyString(),
                 Mockito.anyInt(), Mockito.anyDouble())).thenReturn(true);
 
@@ -41,10 +46,12 @@ public class Example4_1 {
                         Mockito.anyString(), Mockito.anyInt(), Mockito.anyDouble()))
                 //iterate the return values
                 .thenReturn(false, false, true);
+        ////////////////////////////////////////////////////////////////////
 
         boolean executionOutcome = tradingApp.executeTradeGuarantee(symbol, qty, px);
         Assertions.assertTrue(executionOutcome);
 
+        //////////////////////////////////////////////// Verify ////////////////////////////////////////////////
         Mockito.verify(marketData, atLeast(2)).isCurrentOrderPossible(Mockito.anyString(),
                 Mockito.anyInt(), Mockito.anyDouble());
 
@@ -54,7 +61,6 @@ public class Example4_1 {
 
         Mockito.verify(auditRepo).reportTrade(Mockito.anyString(),
                 Mockito.anyInt(), Mockito.anyDouble());
-
     }
 
 
