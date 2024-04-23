@@ -24,9 +24,11 @@ public class Example4_3 {
      */
     @Test
     void verificationWithTimeout() throws InterruptedException, ExecutionException {
+        //////////////////////////// Mocks of dependencies ////////////////////////////
         DbConnector dbConnector = mock(DbConnector.class);
         ConversionRateService conversionRateService = mock(ConversionRateService.class);
         BankAuditService bankAuditService = mock(BankAuditService.class);
+        ////////////////////////////////////////////////////////////////////////////
 
         BankAccountService bAccService = new BankAccountServiceImpl(dbConnector, conversionRateService,
                 bankAuditService);
