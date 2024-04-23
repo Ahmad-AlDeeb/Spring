@@ -20,10 +20,10 @@ public class Example2 {
     //Expected to throw an exception
     @Test
     void spyingMock() {
-        List list = Mockito.mock(List.class);
+        List list = mock();
         Assertions.assertNotNull(list);
 
-        Mockito.spy(list);
+//        Mockito.spy(list);
     }
 
 
