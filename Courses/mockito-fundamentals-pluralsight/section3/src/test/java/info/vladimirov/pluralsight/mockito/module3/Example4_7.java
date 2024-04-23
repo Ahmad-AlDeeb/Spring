@@ -87,19 +87,6 @@ public class Example4_7 {
     }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
     @Test
     void defaultDeepStubs() {
         UserAccount userAccount = mock(UserAccount.class,
@@ -192,8 +179,6 @@ public class Example4_7 {
 
     }
 
-
-
     @Test
     void returnSelf() {
         TestBuilder.Builder testBuilder = mock(TestBuilder.Builder.class,
@@ -209,9 +194,6 @@ public class Example4_7 {
         System.out.println("Mock obj after build: " + test);
 
     }
-
-
-
 
 
     @Test
@@ -232,49 +214,28 @@ public class Example4_7 {
     }
 
 
-
-
-
-
-
     @Test
     void partialMock() {
         UserAccount userAccount = mock(UserAccount.class,
                 CALLS_REAL_METHODS);
-        System.out.println("Username before configure mock " + userAccount.getName());
+        System.out.println("Username before configure mock --> " + userAccount.getName());
 
         userAccount.setName("John Smith");
 
-        System.out.println("Username after configuring the mock " + userAccount.getName());
+        System.out.println("Username after configuring the mock --> " + userAccount.getName());
         System.out.println("Configuring the doReturn/when pattern");
         doReturn("Mr Peterson").when(userAccount).getName();
 
-        System.out.println("Username after being configured " + userAccount.getName());
+        System.out.println("Username after being configured --> " + userAccount.getName());
 
         //WARNING
         System.out.println("Configuring the doReturn/when pattern");
-       // when(userAccount.isNameSet()).thenReturn(false);
-        doReturn(false).when(userAccount).isNameSet();
+        when(userAccount.isNameSet()).thenReturn(false);
+//        doReturn(false).when(userAccount).isNameSet();
 
 
         System.out.println("Method isNameSet after configuration " + userAccount.isNameSet());
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     @Test
