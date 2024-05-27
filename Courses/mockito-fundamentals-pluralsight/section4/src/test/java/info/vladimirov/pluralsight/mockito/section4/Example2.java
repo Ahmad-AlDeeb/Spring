@@ -24,6 +24,7 @@ public class Example2 {
         Assertions.assertNotNull(list);
 
 //        Mockito.spy(list);
+
     }
 
 
